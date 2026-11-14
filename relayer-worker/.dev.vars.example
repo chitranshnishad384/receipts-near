@@ -1,0 +1,8 @@
+# Copy to relayer-worker/.dev.vars for `wrangler dev`. Never commit .dev.vars.
+# These are the same ed25519 secrets as scripts/.env.example. Testnet only.
+SENDER_PRIVATE_KEY=
+RELAYER_PRIVATE_KEY=
+FOUNDER_PRIVATE_KEY=
+# Optional. If set, POST requires `Authorization: Bearer <token>`.
+# Do not put this token in the static site. Leave it empty for an open testnet demo.
+RELAYER_TOKEN=

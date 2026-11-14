@@ -1,0 +1,12 @@
+[package]
+name = "escrow"
+version = "0.1.0"
+edition = "2021"
+description = "Pay-to-DM escrow: a reply releases the fee, silence refunds it."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+near-sdk = { version = "=5.23.0", features = ["unit-testing"] }

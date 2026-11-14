@@ -1,0 +1,12 @@
+/target
+**/*.wasm
+node_modules
+dist
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.near-credentials
+.dev.vars
+.wrangler

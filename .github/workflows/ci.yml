@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.100.0
+        with:
+          targets: wasm32-unknown-unknown
+      - run: cargo test --workspace
+      - run: cargo build --workspace --release --target wasm32-unknown-unknown
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+        working-directory: web
+      - run: npm run build
+        working-directory: web
+      - name: production bundle does not call a relayer
+        working-directory: web
+        run: |
+          if grep -R "127.0.0.1" dist || grep -R "VITE_RELAYER_URL" dist; then
+            echo "production bundle must not contain a relayer origin"
+            exit 1
+          fi
+
+  relayer-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+        working-directory: relayer-worker
+      - run: npm test
+        working-directory: relayer-worker

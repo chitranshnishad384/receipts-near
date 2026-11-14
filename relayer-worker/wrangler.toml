@@ -1,0 +1,28 @@
+# Prepared Worker for the Receipts testnet relayer.
+# Do not deploy until the owner agrees. See DEPLOY.md.
+# Private keys are wrangler secrets. They are not in this file.
+
+name = "receipts-relayer"
+main = "src/index.js"
+compatibility_date = "2026-11-14"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+RPC_URL = "https://test.rpc.fastnear.com"
+TOKEN_ACCOUNT = "dmusd.rcpt14c055.testnet"
+ESCROW_ACCOUNT = "escrow.rcpt14c055.testnet"
+RELAYER_ACCOUNT = "relayer.rcpt14c055.testnet"
+SENDER_ACCOUNT = "sender.rcpt14c055.testnet"
+FOUNDER_ACCOUNT = "founder.rcpt14c055.testnet"
+ALLOWED_ORIGINS = "https://receipts-near.pages.dev,http://127.0.0.1:5173,http://127.0.0.1:4173"
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+
+[observability.traces]
+enabled = true
+head_sampling_rate = 1

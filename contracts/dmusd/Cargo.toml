@@ -1,0 +1,12 @@
+[package]
+name = "dmusd"
+version = "0.1.0"
+edition = "2021"
+description = "Testnet stand-in fungible token for the Receipts demo. Not USDC."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+near-sdk = { version = "=5.23.0", features = ["unit-testing"] }
